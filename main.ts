@@ -29,6 +29,9 @@ input.onGesture(Gesture.LogoUp, function () {
     strip.show()
     list = [0, 3]
     Blink_LED(list)
+    basic.pause(1000)
+    list = [1, 2]
+    Blink_LED(list)
     basic.showIcon(IconNames.Square)
 })
 input.onGesture(Gesture.TiltLeft, function () {
