@@ -138,5 +138,12 @@ strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
 strip.showRainbow(1, 360)
 basic.showIcon(IconNames.Yes)
 basic.forever(function () {
-	
+    wuKong.setServoAngel(wuKong.ServoList.S1, 0)
+    basic.pause(500)
+    wuKong.setServoAngel(wuKong.ServoList.S1, 49)
+    basic.pause(500)
+    wuKong.setServoAngel(wuKong.ServoList.S1, 106)
+    basic.pause(500)
+    wuKong.setServoAngel(wuKong.ServoList.S1, 171)
+    basic.pause(500)
 })
