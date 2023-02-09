@@ -39,6 +39,7 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
         wuKong.setLightMode(wuKong.LightMode.OFF)
         basic.pause(200)
         wuKong.mecanumSpin(wuKong.TurnList.Left)
+        basic.showIcon(IconNames.SmallHeart)
     }
 })
 wuKong.mecanumWheel(
