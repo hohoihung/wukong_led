@@ -2,6 +2,12 @@ input.onButtonPressed(Button.A, function () {
     wuKong.lightIntensity(100)
     wuKong.mecanumDrift(wuKong.TurnList.Left)
 })
+input.onGesture(Gesture.TiltLeft, function () {
+    wuKong.mecanumDrift(wuKong.TurnList.Left)
+})
+input.onGesture(Gesture.ScreenDown, function () {
+    wuKong.mecanumRun(wuKong.RunList.stop)
+})
 input.onButtonPressed(Button.AB, function () {
     wuKong.setLightMode(wuKong.LightMode.BREATH)
     wuKong.mecanumRun(wuKong.RunList.stop)
@@ -14,6 +20,9 @@ input.onButtonPressed(Button.B, function () {
         basic.pause(1000)
         wuKong.mecanumSpin(wuKong.TurnList.Left)
     }
+})
+input.onGesture(Gesture.TiltRight, function () {
+    wuKong.mecanumDrift(wuKong.TurnList.Right)
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     wuKong.mecanumRun(wuKong.RunList.Front)
