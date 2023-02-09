@@ -4,7 +4,7 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.AB, function () {
     wuKong.setLightMode(wuKong.LightMode.BREATH)
-    wuKong.mecanumStop()
+    wuKong.mecanumRun(wuKong.RunList.stop)
 })
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 4; index++) {
@@ -31,6 +31,7 @@ wuKong.ServoList.S2,
 wuKong.ServoList.S3,
 wuKong.ServoList.S4
 )
+wuKong.mecanumStop()
 basic.forever(function () {
 	
 })
