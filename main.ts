@@ -30,6 +30,18 @@ input.onButtonPressed(Button.AB, function () {
     wuKong.setLightMode(wuKong.LightMode.BREATH)
     wuKong.mecanumRun(wuKong.RunList.stop)
 })
+function signalling (seconds: number) {
+    L = randint(0, 100)
+    R = randint(0, 100)
+    if (R > L) {
+        strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Yellow))
+        strip.setPixelColor(0, neopixel.colors(NeoPixelColors.Black))
+    }
+    if (L > R) {
+        strip.setPixelColor(0, neopixel.colors(NeoPixelColors.Yellow))
+        strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Black))
+    }
+}
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 4; index++) {
         wuKong.lightIntensity(57)
@@ -77,6 +89,9 @@ function car_dance_1 () {
     wuKong.mecanumSpin(wuKong.TurnList.Right)
     wuKong.mecanumRun(wuKong.RunList.stop)
 }
+let R = 0
+let L = 0
+let strip: neopixel.Strip = null
 wuKong.mecanumWheel(
 wuKong.ServoList.S1,
 wuKong.ServoList.S2,
@@ -84,6 +99,7 @@ wuKong.ServoList.S3,
 wuKong.ServoList.S4
 )
 wuKong.mecanumStop()
+strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB_RGB)
 basic.showIcon(IconNames.Yes)
 basic.forever(function () {
 	
