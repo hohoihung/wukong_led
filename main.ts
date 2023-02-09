@@ -1,10 +1,10 @@
 function Blink_LED (list: number[]) {
     for (let index = 0; index < 4; index++) {
-        strip.setBrightness(0)
-        strip.show()
         strip.setPixelColor(list[0], neopixel.colors(NeoPixelColors.Yellow))
-        strip.setPixelColor(list[1], neopixel.colors(NeoPixelColors.Blue))
-        strip.setBrightness(255)
+        strip.setPixelColor(list[1], neopixel.colors(NeoPixelColors.Yellow))
+        strip.show()
+        basic.pause(200)
+        strip.showColor(neopixel.colors(NeoPixelColors.Black))
         strip.show()
         basic.showNumber(list[0])
         basic.showNumber(list[1])
@@ -19,13 +19,16 @@ function turning_circle_right () {
 input.onButtonPressed(Button.A, function () {
     wuKong.lightIntensity(100)
     wuKong.mecanumDrift(wuKong.TurnList.Left)
-    list = [0, 1]
+    list = [0, 3]
     Blink_LED(list)
 })
 input.onGesture(Gesture.LogoUp, function () {
     basic.showIcon(IconNames.Diamond)
-    signalling(3)
     wuKong.mecanumRun(wuKong.RunList.stop)
+    strip.showColor(neopixel.colors(NeoPixelColors.Black))
+    strip.show()
+    list = [0, 3]
+    Blink_LED(list)
     basic.showIcon(IconNames.Square)
 })
 input.onGesture(Gesture.TiltLeft, function () {
@@ -128,8 +131,8 @@ wuKong.ServoList.S3,
 wuKong.ServoList.S4
 )
 wuKong.mecanumStop()
-strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGBW)
-list = [0, 1]
+strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
+strip.showRainbow(1, 360)
 basic.showIcon(IconNames.Yes)
 basic.forever(function () {
 	
