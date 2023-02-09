@@ -1,3 +1,15 @@
+function Blink_LED (list: number[]) {
+    for (let index = 0; index < 4; index++) {
+        strip.setBrightness(0)
+        strip.show()
+        strip.setPixelColor(list[0], neopixel.colors(NeoPixelColors.Yellow))
+        strip.setPixelColor(list[1], neopixel.colors(NeoPixelColors.Blue))
+        strip.setBrightness(255)
+        strip.show()
+        basic.showNumber(list[0])
+        basic.showNumber(list[1])
+    }
+}
 function turning_circle_right () {
     wuKong.mecanumSpeed(wuKong.WheelList.RightFront_def, 50)
     wuKong.mecanumSpeed(wuKong.WheelList.RightFront_def, 50)
@@ -7,6 +19,14 @@ function turning_circle_right () {
 input.onButtonPressed(Button.A, function () {
     wuKong.lightIntensity(100)
     wuKong.mecanumDrift(wuKong.TurnList.Left)
+    list = [0, 1]
+    Blink_LED(list)
+})
+input.onGesture(Gesture.LogoUp, function () {
+    basic.showIcon(IconNames.Diamond)
+    signalling(3)
+    wuKong.mecanumRun(wuKong.RunList.stop)
+    basic.showIcon(IconNames.Square)
 })
 input.onGesture(Gesture.TiltLeft, function () {
     wuKong.mecanumDrift(wuKong.TurnList.Left)
@@ -25,22 +45,30 @@ function turning_circle_left () {
     wuKong.mecanumSpeed(wuKong.WheelList.LeftRear_def, 50)
     wuKong.mecanumSpeed(wuKong.WheelList.RightFront_def, 100)
     wuKong.mecanumSpeed(wuKong.WheelList.RightRear_def, 100)
+    strip.clear()
 }
 input.onButtonPressed(Button.AB, function () {
     wuKong.setLightMode(wuKong.LightMode.BREATH)
     wuKong.mecanumRun(wuKong.RunList.stop)
 })
 function signalling (seconds: number) {
+    strip.clear()
     L = randint(0, 100)
     R = randint(0, 100)
     if (R > L) {
-        strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Yellow))
-        strip.setPixelColor(0, neopixel.colors(NeoPixelColors.Black))
+        list = [1, 3]
+        Blink_LED(list)
     }
     if (L > R) {
-        strip.setPixelColor(0, neopixel.colors(NeoPixelColors.Yellow))
-        strip.setPixelColor(1, neopixel.colors(NeoPixelColors.Black))
+        list = [0, 2]
+        Blink_LED(list)
+        wuKong.mecanumSpeed(wuKong.WheelList.LeftFront_def, L)
+        wuKong.mecanumSpeed(wuKong.WheelList.LeftRear_def, L)
+        wuKong.mecanumSpeed(wuKong.WheelList.RightFront_def, R)
+        wuKong.mecanumSpeed(wuKong.WheelList.RightRear_def, R)
     }
+    strip.show()
+    basic.pause(seconds)
 }
 input.onButtonPressed(Button.B, function () {
     for (let index = 0; index < 4; index++) {
@@ -91,6 +119,7 @@ function car_dance_1 () {
 }
 let R = 0
 let L = 0
+let list: number[] = []
 let strip: neopixel.Strip = null
 wuKong.mecanumWheel(
 wuKong.ServoList.S1,
@@ -99,7 +128,8 @@ wuKong.ServoList.S3,
 wuKong.ServoList.S4
 )
 wuKong.mecanumStop()
-strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB_RGB)
+strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGBW)
+list = [0, 1]
 basic.showIcon(IconNames.Yes)
 basic.forever(function () {
 	
