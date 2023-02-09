@@ -4,9 +4,15 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onGesture(Gesture.TiltLeft, function () {
     wuKong.mecanumDrift(wuKong.TurnList.Left)
+    basic.showArrow(ArrowNames.West)
+})
+input.onGesture(Gesture.ScreenUp, function () {
+    wuKong.mecanumRun(wuKong.RunList.stop)
+    basic.showIcon(IconNames.Heart)
 })
 input.onGesture(Gesture.ScreenDown, function () {
     wuKong.mecanumRun(wuKong.RunList.stop)
+    basic.showIcon(IconNames.No)
 })
 input.onButtonPressed(Button.AB, function () {
     wuKong.setLightMode(wuKong.LightMode.BREATH)
@@ -22,6 +28,7 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 input.onGesture(Gesture.TiltRight, function () {
+    basic.showArrow(ArrowNames.East)
     wuKong.mecanumDrift(wuKong.TurnList.Right)
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
