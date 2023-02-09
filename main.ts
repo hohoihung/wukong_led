@@ -48,6 +48,7 @@ wuKong.ServoList.S3,
 wuKong.ServoList.S4
 )
 wuKong.mecanumStop()
+basic.showIcon(IconNames.Yes)
 basic.forever(function () {
 	
 })
