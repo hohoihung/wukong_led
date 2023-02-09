@@ -1,5 +1,5 @@
 {
-    "name": "wukong_LED",
+    "name": "wukong_all",
     "description": "",
     "dependencies": {
         "core": "*",
